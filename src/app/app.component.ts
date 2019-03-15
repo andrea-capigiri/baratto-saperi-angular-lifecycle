@@ -1,31 +1,59 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    AfterContentInit,
+    AfterViewInit,
+    AfterContentChecked,
+    AfterViewChecked,
+    OnChanges,
+    SimpleChanges
+} from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center">
-      <h1>
-        Welcome to {{title}}!
-      </h1>
-      <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-    </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
-  `,
-  styles: []
+    selector: "app-root",
+    template: `
+        <p>Hi</p>
+        <router-outlet></router-outlet>
+    `,
+    styles: []
 })
-export class AppComponent {
-  title = 'baratto-saperi-angular-lifecycle';
+export class AppComponent implements
+        OnInit, OnChanges,
+        AfterViewInit, AfterViewChecked,
+        AfterContentInit, AfterContentChecked {
+    
+    constructor() {
+        console.info("AppComponent constructor");
+    }
+
+    ngOnInit(): void {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        console.log('AppComponent ngOnInit');
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add '${implements OnChanges}' to the class.
+        console.log('AppComponent ngOnChanges');
+    }
+    ngAfterViewChecked(): void {
+        //Called after every check of the component's view. Applies to components only.
+        //Add 'implements AfterViewChecked' to the class.
+        console.log('AppComponent ngAfterViewChecked');
+    }
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        console.log('AppComponent ngAfterViewInit');
+    }
+    ngAfterContentInit(): void {
+        //Called after ngOnInit when the component's or directive's content has been initialized.
+        //Add 'implements AfterContentInit' to the class.
+        console.log('AppComponent ngAfterContentInit');
+    }
+    ngAfterContentChecked(): void {
+        //Called after every check of the component's or directive's content.
+        //Add 'implements AfterContentChecked' to the class.
+        console.log('AppComponent ngAfterContentChecked');
+    }
 }
